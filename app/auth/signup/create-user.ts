@@ -1,6 +1,6 @@
 "use server";
 import { redirect } from "next/navigation";
-import { post } from "../util/fetch";
+import { post } from "../../common/util/fetch";
 import { FormError } from "@/app/common/form-error.interface";
 
 export default async function createUser(
