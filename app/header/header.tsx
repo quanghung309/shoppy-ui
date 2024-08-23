@@ -131,7 +131,10 @@ export default function Header({ logout }: HeaderProps) {
                   {pages.map((page) => (
                      <Button
                         key={page.title}
-                        onClick={handleCloseNavMenu}
+                        onClick={() => {
+                           router.push(page.path);
+                           handleCloseNavMenu();
+                        }}
                         sx={{ my: 2, color: "white", display: "block" }}
                      >
                         {page.title}
