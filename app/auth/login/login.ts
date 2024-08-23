@@ -4,9 +4,12 @@ import { getErrorMessage } from "../../common/util/errors";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { jwtDecode } from "jwt-decode";
-import { FormError } from "@/app/common/interfaces/form-error.interface";
 import { AUTHENTICATION_COOKIE } from "../auth-cookie";
-export default async function login(_prevState: FormError, formData: FormData) {
+import { FormRespsonse } from "@/app/common/interfaces/form-response.interface";
+export default async function login(
+   _prevState: FormRespsonse,
+   formData: FormData
+) {
    const res = await fetch(`${API_URL}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
