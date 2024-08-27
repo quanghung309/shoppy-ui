@@ -1,9 +1,16 @@
 "use client";
-import { Box, Button, Modal, Stack, TextField } from "@mui/material";
-import { useState } from "react";
+import {
+   Box,
+   Button,
+   Modal,
+   Stack,
+   TextField,
+   Typography,
+} from "@mui/material";
+import { CSSProperties, useState } from "react";
 import { FormRespsonse } from "../../common/interfaces/form-response.interface";
 import createProduct from "../actions/create-product";
-
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 const styles = {
    position: "absolute",
    top: "50%",
@@ -15,6 +22,18 @@ const styles = {
    boxShadow: 24,
    p: 4,
 };
+
+const fileInputStyles: CSSProperties = {
+   clip: "rect(0 0 0 0)",
+   clipPath: "inset(50%)",
+   height: 1,
+   overflow: "hidden",
+   position: "absolute",
+   bottom: 0,
+   left: 0,
+   whiteSpace: "nowrap",
+   width: 1,
+};
 interface CreateProductModalProps {
    open: boolean;
    handleClose: () => void;
@@ -22,10 +41,11 @@ interface CreateProductModalProps {
 
 const CreateProductModal = ({ open, handleClose }: CreateProductModalProps) => {
    const [response, setResponse] = useState<FormRespsonse>();
-
+   const [fileName, setFileName] = useState("");
    const onClose = () => {
       setResponse(undefined);
       handleClose();
+      setFileName("");
    };
 
    return (
@@ -66,6 +86,22 @@ const CreateProductModal = ({ open, handleClose }: CreateProductModalProps) => {
                      helperText={response?.error}
                      error={!!response?.error}
                   />
+                  <Button
+                     component="label"
+                     variant="outlined"
+                     startIcon={<CloudUploadIcon />}
+                  >
+                     Upload File
+                     <input
+                        type="file"
+                        name="image"
+                        style={fileInputStyles}
+                        onChange={(e) =>
+                           e.target.files && setFileName(e.target.files[0].name)
+                        }
+                     ></input>
+                  </Button>
+                  <Typography> {fileName}</Typography>
                   <Button type="submit" variant="contained">
                      Submit
                   </Button>
