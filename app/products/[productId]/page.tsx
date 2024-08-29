@@ -8,8 +8,8 @@ interface SingleProductProps {
 }
 
 const SingleProduct = async ({ params }: SingleProductProps) => {
-   // @ts-ignore
-   const product = await getProduct(Number(params.productId));
+   //@ts-ignore
+   const product = await getProduct(+params.productId);
 
    return (
       <Grid container marginBottom={"2rem"} rowGap={3}>
@@ -29,7 +29,6 @@ const SingleProduct = async ({ params }: SingleProductProps) => {
          <Grid md={6} xs={12}>
             <Stack gap={3}>
                <Typography variant="h2">{product.name}</Typography>
-
                <Typography>{product.description}</Typography>
                <Typography variant="h4">${product.price}</Typography>
             </Stack>
