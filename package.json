@@ -20,7 +20,8 @@
       "next": "14.2.5",
       "react": "^18",
       "react-dom": "^18",
-      "shoppy-ui": "file:"
+      "shoppy-ui": "file:",
+      "socket.io-client": "^4.7.5"
    },
    "devDependencies": {
       "@types/node": "^20",
